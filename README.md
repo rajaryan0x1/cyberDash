@@ -13,7 +13,7 @@
 - 🧠 **Security Tips** & Training Resources
 - 📷 **Animated Backgrounds** via Unsplash API
 - 📱 **Fully Responsive UI**
-- ⚙️ **Under Construction Page** with rotating aesthetic backgrounds
+- ⚙️ **Services Page** for purchasing different tiers
 
 ---
 
