@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cybersecurity Services</title>
+  <link rel="stylesheet" href="/styles.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(120deg, #0f172a, #1e293b);
+      color: #fff;
+    }
+
+    nav {
+      background: #1f2937;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-brand {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #60a5fa;
+    }
+
+    .nav-links a {
+      color: #d1d5db;
+      text-decoration: none;
+      margin-left: 1rem;
+    }
+
+    .nav-links a:hover {
+      color: #fff;
+    }
+
+    .container {
+      padding: 2rem;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .service-card {
+      background: #1e293b;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s ease, background 0.3s ease;
+      color: #fff;
+      position: relative;
+    }
+
+    .service-card:hover {
+      transform: translateY(-10px);
+      background: #334155;
+    }
+
+    /* Wobble Animation */
+    @keyframes wobble {
+      0% { transform: rotate(0deg); }
+      25% { transform: rotate(5deg); }
+      50% { transform: rotate(0deg); }
+      75% { transform: rotate(-5deg); }
+      100% { transform: rotate(0deg); }
+    }
+
+    .service-card:hover {
+      animation: wobble 0.5s ease;
+    }
+
+    h2 {
+      color: #60a5fa;
+      text-align: center;
+      font-size: 2rem;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+      margin-top: 1rem;
+    }
+
+    ul li {
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+
+    .cta-button {
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .cta-button a {
+      background: #60a5fa;
+      color: #fff;
+      padding: 1rem 2rem;
+      text-decoration: none;
+      border-radius: 12px;
+      font-weight: bold;
+      font-size: 1.1rem;
+      transition: background 0.3s ease;
+    }
+
+    .cta-button a:hover {
+      background: #1e293b;
+    }
+
+    .price {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin: 1rem 0;
+    }
+
+    .membership-benefits {
+      margin-top: 4rem;
+      background: #1e293b;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- 🔗 Navigation Bar -->
+  <nav>
+    <div class="nav-brand">CyberDash</div>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/dashboard">Dashboard</a>
+      <a href="/card-checker">Card Checker</a>
+      <a href="/services">Services</a>
+      <a href="/logout">Logout</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h1>🛡 Secure Your Data with CyberDash Plans</h1>
+    <p>Choose a plan that fits your needs and start protecting your online presence today.</p>
+
+    <div class="services-grid">
+
+      <!-- 💡 Basic Plan -->
+      <div class="service-card">
+        <h2>🔒 Basic Plan</h2>
+        <p class="price">$9.99/month</p>
+        <ul>
+          <li>🔑 24/7 Email Support</li>
+          <li>💡 Basic Threat Protection</li>
+          <li>🔍 Regular Scans for Malware & Phishing</li>
+          <li>🛡 Basic Data Encryption</li>
+        </ul>
+        <div class="cta-button">
+          <a href="/purchase/basic">Get Started</a>
+        </div>
+      </div>
+
+      <!-- 💎 Premium Plan -->
+      <div class="service-card">
+        <h2>💎 Premium Plan</h2>
+        <p class="price">$29.99/month</p>
+        <ul>
+          <li>🔑 Priority Email & Chat Support</li>
+          <li>💡 Advanced Threat Detection</li>
+          <li>🔍 Real-time Malware & Phishing Protection</li>
+          <li>🛡 Advanced Data Encryption & VPN</li>
+          <li>📉 Regular Data Breach Monitoring</li>
+        </ul>
+        <div class="cta-button">
+          <a href="/purchase/premium">Get Started</a>
+        </div>
+      </div>
+
+      <!-- 💎 Ultimate Plan -->
+      <div class="service-card">
+        <h2>🌟 Ultimate Plan</h2>
+        <p class="price">$49.99/month</p>
+        <ul>
+          <li>🔑 24/7 Priority Support (Phone & Chat)</li>
+          <li>💡 Complete Threat Detection Suite</li>
+          <li>🔍 Instant Malware & Phishing Alerts</li>
+          <li>🛡 Full Data Encryption + VPN</li>
+          <li>📉 Real-time Data Breach & Privacy Monitoring</li>
+          <li>📜 Full Security Audit Reports</li>
+        </ul>
+        <div class="cta-button">
+          <a href="/purchase/ultimate">Get Started</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Membership Benefits Section -->
+    <div class="membership-benefits">
+      <h2>🚀 Membership Benefits</h2>
+      <ul>
+        <li>🎓 Access to Free Cybersecurity Training Courses</li>
+        <li>🔐 Priority Security Alerts & Updates</li>
+        <li>🛡 Enhanced Protection for All Devices</li>
+        <li>📊 Detailed Security Reports & Analytics</li>
+        <li>🕵️‍♂️ Enhanced Privacy Monitoring</li>
+        <li>💼 Exclusive Partner Deals on Security Tools</li>
+      </ul>
+    </div>
+  </div>
+
+  <!--  GSAP + News Loader Script -->
+  <script>
+    gsap.from(".fade-in", { duration: 1, opacity: 0, y: -20, ease: "power2.out" });
+    gsap.from(".service-card", { duration: 1, opacity: 0, y: 20, ease: "power2.out", stagger: 0.3 });
+  </script>
+
+</body>
+</html>

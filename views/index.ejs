@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cybersecurity Dashboard</title>
+  <link rel="stylesheet" href="/styles.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #111827;
+      color: #fff;
+    }
+
+    nav {
+      background: #1f2937;
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .nav-brand {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #60a5fa;
+      text-transform: uppercase;
+    }
+
+    .nav-links a {
+      color: #d1d5db;
+      text-decoration: none;
+      margin-left: 2rem;
+      font-size: 1.1rem;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #60a5fa;
+    }
+
+    .cover-container {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      background: url('https://via.placeholder.com/1920x1080?text=Cybersecurity+Cover+Image') no-repeat center center/cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      overflow: hidden;
+    }
+
+    .cover-cards {
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    .cover-card {
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 3rem;
+      border-radius: 12px;
+      margin: 0 1rem;
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
+      transform: scale(0.9);
+      opacity: 0;
+      transition: transform 0.3s, opacity 0.5s;
+    }
+
+    .cover-content {
+      max-width: 650px;
+      padding: 3rem;
+      background-color: rgba(0, 0, 0, 0.6);
+      border-radius: 15px;
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.6);
+      transform: translateY(100px);
+      opacity: 0;
+      transition: transform 0.5s, opacity 0.5s;
+      z-index: 1;
+    }
+
+    .cover-content h1 {
+      font-size: 3.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .cover-content p {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      margin-bottom: 2rem;
+      letter-spacing: 0.5px;
+    }
+
+    .cta-button a {
+      background: #60a5fa;
+      color: #fff;
+      padding: 1.2rem 2.5rem;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1.2rem;
+      letter-spacing: 0.5px;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    .cta-button a:hover {
+      background: #1e293b;
+      transform: translateY(-4px);
+    }
+
+    .attack-vectors {
+      padding: 6rem 3rem;
+      background: #1f2937;
+      text-align: center;
+      transition: background 0.3s;
+    }
+
+    .attack-vectors h2 {
+      font-size: 2.2rem;
+      color: #60a5fa;
+      margin-bottom: 3rem;
+      font-weight: 600;
+    }
+
+    .attack-vectors .vector {
+      background-color: #334155;
+      padding: 2rem;
+      margin: 2rem 0;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .attack-vectors .vector:hover {
+      background-color: #1e293b;
+      transform: translateY(-5px);
+    }
+
+    .attack-vectors .vector h3 {
+      font-size: 1.6rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .attack-vectors .vector p {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: #d1d5db;
+    }
+
+  </style>
+</head>
+<body>
+
+ <!-- 🔗 Navigation Bar -->
+ <nav>
+  <div class="nav-brand">CyberDash</div>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/card-checker">Card Checker</a>
+    <a href="/services">Services</a>
+
+    <!-- Conditionally display logout link -->
+    <% if (!isLoggedIn) { %>
+      <a href="/login">Login</a>
+      <a href="/register">Register</a>
+    <% } else { %>
+      <a href="/logout">Logout</a>
+    <% } %>
+  </div>
+</nav>
+
+  <!-- Cover Container with Eye-Catching Message and Card Stacking -->
+  <div class="cover-container">
+    <div class="cover-cards">
+      <div class="cover-card"></div>
+      <div class="cover-card"></div>
+      <div class="cover-card"></div>
+    </div>
+    <div class="cover-content">
+      <h1> Secure Your Digital Life with CyberDash</h1>
+      <p>Join us in defending your online presence. Our cutting-edge security solutions protect your personal data and help you stay one step ahead of cybercriminals.</p>
+      <div class="cta-button">
+        <a href="/services">Explore Our Plans</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Common Attack Vectors Section -->
+  <div class="attack-vectors">
+    <h2> Common Cyber Attack Vectors </h2>
+
+    <div class="vector">
+      <h3>Phishing Attacks</h3>
+      <p>Phishing attacks involve deceptive emails or websites that impersonate legitimate sources. These attacks aim to steal sensitive information such as login credentials, banking details, and personal data.</p>
+    </div>
+
+    <div class="vector">
+      <h3>Ransomware</h3>
+      <p>Ransomware encrypts the victim’s files, locking them out of access. Cybercriminals demand a ransom payment in exchange for the decryption key, often leading to large financial losses.</p>
+    </div>
+
+    <div class="vector">
+      <h3>SQL Injection</h3>
+      <p>SQL injection is a malicious technique used to manipulate a website's database. Attackers exploit vulnerabilities in web applications, gaining access to confidential data stored in SQL databases.</p>
+    </div>
+
+    <div class="vector">
+      <h3>Man-in-the-Middle (MitM) Attacks</h3>
+      <p>In MitM attacks, hackers intercept and alter communication between two parties. They can steal data, inject malicious content, or manipulate transactions, often targeting unsecured networks.</p>
+    </div>
+
+    <div class="vector">
+      <h3>Malware</h3>
+      <p>Malware is a broad term for any malicious software designed to damage, disrupt, or gain unauthorized access to systems. It can take many forms, including viruses, worms, and trojans.</p>
+    </div>
+
+  </div>
+
+  <!-- 🌟 GSAP Animation for Cover Content and Card Stacking -->
+  <script>
+    // GSAP Animation for Cover Content
+    gsap.to(".cover-content", { duration: 1.5, opacity: 1, y: 0, ease: "power2.out" });
+
+    // GSAP Animation for Card Stacking
+    gsap.from(".cover-card", {
+      duration: 1.5,
+      opacity: 0,
+      y: -30,
+      scale: 0.8,
+      stagger: 0.2,
+      ease: "power2.out",
+    });
+
+    // GSAP Animation for Attack Vectors
+    gsap.from(".vector", { duration: 1, opacity: 0, y: 30, ease: "power2.out", stagger: 0.3 });
+  </script>
+
+</body>
+</html>

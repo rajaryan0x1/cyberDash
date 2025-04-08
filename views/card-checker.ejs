@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Card Usage Checker</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #0f172a, #1e293b, #0f172a);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      color: #e2e8f0;
+      margin: 0;
+      padding: 2rem;
+    }
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 2rem;
+      border-radius: 12px;
+    }
+    h1 {
+      text-align: center;
+      color: #38bdf8;
+    }
+    form input {
+      width: 100%;
+      padding: 0.75rem;
+      margin: 0.5rem 0;
+      border: none;
+      border-radius: 8px;
+      background: #1e293b;
+      color: #e2e8f0;
+    }
+    button {
+      width: 100%;
+      padding: 0.75rem;
+      background: #38bdf8;
+      color: #0f172a;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .result {
+      margin-top: 2rem;
+    }
+    .txn {
+      padding: 0.5rem;
+      margin-bottom: 0.5rem;
+      border-left: 4px solid #38bdf8;
+      background: rgba(255,255,255,0.03);
+      border-radius: 6px;
+    }
+    .txn.suspicious {
+      border-left-color: red;
+      background: rgba(255, 0, 0, 0.05);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🔍 Card Usage Checker</h1>
+    <p>Hello <strong><%= username %></strong>! Enter your card details to check usage.</p>
+
+    <form action="/card-checker" method="POST">
+      <input type="text" name="cardNumber" placeholder="Card Number (XXXX-XXXX-XXXX-1234)" required />
+      <input type="text" name="expiry" placeholder="Expiry (MM/YY)" required />
+      <input type="password" name="cvv" placeholder="CVV" required />
+      <button type="submit">Check Usage</button>
+    </form>
+
+    <% if (result) { %>
+      <div class="result">
+        <% if (result.error) { %>
+          <p style="color:red;"><%= result.error %></p>
+        <% } else { %>
+          <h2>Total Spent: ₹<%= result.totalSpent %></h2>
+          <% if (result.flagged) { %>
+            <p style="color:red;">⚠ Suspicious activity detected!</p>
+          <% } %>
+          <h3>Recent Transactions:</h3>
+          <% result.transactions.forEach(txn => { %>
+            <div class="txn <%= txn.suspicious ? 'suspicious' : '' %>">
+              <strong><%= txn.merchant %></strong> - ₹<%= txn.amount %><br/>
+              <small><%= txn.date %></small>
+              <% if (txn.suspicious) { %>
+                <p style="color:red;">⚠ Suspicious Transaction</p>
+              <% } %>
+            </div>
+          <% }) %>
+        <% } %>
+      </div>
+    <% } %>
+  </div>
+</body>
+</html>

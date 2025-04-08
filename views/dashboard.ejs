@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cybersecurity Dashboard</title>
+  <link rel="stylesheet" href="/styles.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(120deg, #0f172a, #1e293b);
+      color: #fff;
+    }
+
+    nav {
+      background: #1f2937;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-brand {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #60a5fa;
+    }
+
+    .nav-links a {
+      color: #d1d5db;
+      text-decoration: none;
+      margin-left: 1rem;
+    }
+
+    .nav-links a:hover {
+      color: #fff;
+    }
+
+    .container {
+      padding: 2rem;
+    }
+
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .card {
+      background: #1e293b;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+    }
+
+    .scrollable-card {
+      max-height: 400px;
+      overflow-y: auto;
+    }
+
+    .news-item {
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid #334155;
+      padding-bottom: 1rem;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    a {
+      color: #60a5fa;
+      text-decoration: underline;
+    }
+
+    a:hover {
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 🔗 Navigation Bar -->
+  <nav>
+    <div class="nav-brand"> CyberDash</div>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/password-checker">Password Checker</a>
+      <!-- <a href="/login">Login</a> -->
+      <!-- <a href="/register">Register</a> -->
+       <a href="/card-checker">Card Checker</a>
+      <a href="/services">Services</a>
+      <a href="/logout">Logout</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h1 class="fade-in"> Welcome to CSA! Where Users meet Awareness</h1>
+
+    <div class="dashboard-grid">
+
+      <!--  Scrollable News Card with Auto Refresh -->
+      <div class="card scrollable-card">
+        <h2> Latest Cybersecurity News</h2>
+        <ul id="news-list">
+          <li>Loading latest news...</li>
+        </ul>
+      </div>
+
+      <!-- 🛡 Cybersecurity Tips Card -->
+      <div class="card">
+        <h2>🛡 Security Best Practices</h2>
+        <ul class="tips-list">
+          <li> Use strong, unique passwords for each account.</li>
+          <li> Be cautious of phishing emails & suspicious links.</li>
+          <li> Enable two-factor authentication (2FA).</li>
+          <li> Keep software & antivirus updated regularly.</li>
+          <li> Avoid using public WiFi without a VPN.</li>
+        </ul>
+      </div>
+
+      <!-- 🎓 Cybersecurity Training Card -->
+      <div class="card">
+        <h2> Cybersecurity Training</h2>
+        <p>Enhance your security knowledge with these free courses:</p>
+        <ul class="training-list">
+          <li><a href="https://www.cybrary.it">Cybrary - Free Cybersecurity Courses</a></li>
+          <li><a href="https://www.sans.org">SANS Security Awareness Training</a></li>
+          <li><a href="https://www.coursera.org">Coursera Cybersecurity Courses</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 🌟 GSAP + News Loader Script -->
+  <script>
+    async function loadNews() {
+      try {
+        const res = await fetch("/api/news");
+        const news = await res.json();
+
+        const list = document.getElementById("news-list");
+        list.innerHTML = "";
+
+        news.forEach(article => {
+          const li = document.createElement("li");
+          li.className = "news-item";
+          li.innerHTML = `
+            <strong>${article.title}</strong><br/>
+            <a href="${article.url}" target="_blank">🔗 Read more</a>
+          `;
+          list.appendChild(li);
+        });
+
+        gsap.from(".news-item", {
+          duration: 1,
+          opacity: 0,
+          x: -30,
+          ease: "power2.out",
+          stagger: 0.2,
+        });
+
+      } catch (err) {
+        console.error("Failed to load news", err);
+        document.getElementById("news-list").innerHTML = "<li>Could not load news right now. Please try again later.</li>";
+      }
+    }
+
+    gsap.from(".fade-in", { duration: 1, opacity: 0, y: -20, ease: "power2.out" });
+    gsap.from(".card", { duration: 1, opacity: 0, y: 20, ease: "power2.out", stagger: 0.3 });
+
+    loadNews();
+    setInterval(loadNews, 30000); // Auto-refresh every 30s
+  </script>
+
+</body>
+</html>
