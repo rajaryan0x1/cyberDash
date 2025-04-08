@@ -52,4 +52,4 @@ ENCRYPTION_PASSWORD=YOURSUPERSECRETPASSWORD
 JWT_PASSWORD=PASSW03D
 ```
 
-P.S - I don't know why I've named JWT_PASSWORD even though I'm not using it 😅
+P.S - I don't know why I've named JWT_PASSWORD even though I'm not using it 😅. This is a college project so I didn't do much and might not have used the best practices for creating something like this.
